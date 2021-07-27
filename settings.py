@@ -5,8 +5,16 @@ class Settings():
 		self.screen_height = 800
 		self.bg_color = (230,230,230)
 
-		#基本属性
+		#船的属性
 		self.ship_speed_factor = 1
+
+		#外星人的属性
+		self.alien_speed_factor = 1
+		self.fleet_drop_speed = 10
+		# fleet_direction为1表示向右移动，为-1表示向左移动
+		self.fleet_direction = 1
+		
+		#子弹的属性
 		self.bullet_speed_factor = 1
 		self.bullet_width = 3
 		self.bullet_height = 15
