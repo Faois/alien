@@ -6,7 +6,7 @@ class Ship():
 		self.ai_settings = ai_setting
 		
 		#加载飞船图像并获取其外接矩形
-		self.image = pygame.image.load('alien_invasion\images\ship.bmp')
+		self.image = pygame.image.load('images/ship.bmp')
 		self.rect = self.image.get_rect()
 		self.screen_rect = screen.get_rect()
 		
@@ -15,8 +15,9 @@ class Ship():
 		self.rect.bottom = self.screen_rect.bottom
 		
 		#在飞船属性center中存储小数
-		self.centerxx = float(self.rect.centerx)
-		self.centeryy = float(self.rect.centery)
+		self.centerx = float(self.rect.centerx)
+		self.centery = float(self.rect.centery)
+		self.bottom = float(self.rect.bottom)
 
 		#移动标志
 		self.moving_right = False
@@ -24,23 +25,27 @@ class Ship():
 		self.moving_up = False
 		self.moving_down = False
 
+	def center_ship(self):
+		"""让飞船在屏幕上居中"""
+		self.centerx = self.screen_rect.centerx
+		self.centery = self.screen_rect.bottom - int(self.rect.height)/2
 
 	def update(self):
 		if (self.moving_right 
 			and self.rect.right < self.screen_rect.right):
-			self.centerxx += self.ai_settings.ship_speed_factor
+			self.centerx += self.ai_settings.ship_speed_factor
 		if self.moving_left and self.rect.left > 0:
-			self.centerxx -= self.ai_settings.ship_speed_factor
-		self.rect.centerx = self.centerxx
+			self.centerx -= self.ai_settings.ship_speed_factor
+		self.rect.centerx = self.centerx
 		
 		if self.moving_up and self.rect.top > 0:
-			self.centeryy -= self.ai_settings.ship_speed_factor
+			self.centery -= self.ai_settings.ship_speed_factor
 		if (self.moving_down
 			and self.rect.bottom < self.screen_rect.bottom):
-			self.centeryy += self.ai_settings.ship_speed_factor
-		self.rect.centery = self.centeryy
+			self.centery += self.ai_settings.ship_speed_factor
+		self.rect.centery = self.centery
 	
-	
+
 	def blitme(self):
 		self.screen.blit(self.image, self.rect)
 		
