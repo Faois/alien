@@ -1,4 +1,6 @@
 import pygame
+from pathlib import Path
+Ima_ship = Path.cwd() / Path('alien_invasion/images/ship.bmp') 
 
 class Ship():
 	def __init__(self, ai_setting, screen):
@@ -6,7 +8,7 @@ class Ship():
 		self.ai_settings = ai_setting
 		
 		#加载飞船图像并获取其外接矩形
-		self.image = pygame.image.load('images/ship.bmp')
+		self.image = pygame.image.load(Ima_ship)
 		self.rect = self.image.get_rect()
 		self.screen_rect = screen.get_rect()
 		
